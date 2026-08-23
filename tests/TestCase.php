@@ -24,6 +24,13 @@ abstract class TestCase extends Orchestra
         $app['config']->set('amravati-whatsapp.base_url', 'https://automate.amravatisms.com');
         $app['config']->set('amravati-whatsapp.logging.enabled', false);
         $app['config']->set('amravati-whatsapp.queue.enabled', false);
+
+        $app['config']->set('database.default', 'sqlite');
+        $app['config']->set('database.connections.sqlite', [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ]);
     }
 
     protected function defineDatabaseMigrations()
