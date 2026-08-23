@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 abstract class TestCase extends Orchestra
 {
+    use RefreshDatabase;
+
     protected function getPackageProviders($app): array
     {
         return [
@@ -22,18 +24,6 @@ abstract class TestCase extends Orchestra
         $app['config']->set('amravati-whatsapp.base_url', 'https://automate.amravatisms.com');
         $app['config']->set('amravati-whatsapp.logging.enabled', false);
         $app['config']->set('amravati-whatsapp.queue.enabled', false);
-    }
-}
-
-abstract class TestCase extends BaseTestCase
-{
-    use RefreshDatabase;
-
-    protected function getPackageProviders($app)
-    {
-        return [
-            \AmravatiSMS\LaravelWhatsApp\WhatsAppServiceProvider::class,
-        ];
     }
 
     protected function defineDatabaseMigrations()
