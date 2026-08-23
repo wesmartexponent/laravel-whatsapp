@@ -1,4 +1,4 @@
-﻿{
+{
     "name": "amravatisms/laravel-whatsapp",
     "description": "Official Laravel SDK for AmravatiSMS WhatsApp Business API",
     "keywords": ["laravel", "whatsapp", "amravatisms", "whatsapp-business-api", "messaging"],
