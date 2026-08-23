@@ -247,7 +247,7 @@ class WhatsAppClient
         $retryTimes = $this->httpConfig['retry_times'] ?? 3;
         $retrySleep = $this->httpConfig['retry_sleep'] ?? 100;
 
-        $http = $http->retry($retryTimes, $retrySleep);
+        $http = $http->retry($retryTimes, $retrySleep, throw: false);
 
         $response = strtoupper($method) === 'GET'
             ? $http->get($url, $data)
