@@ -4,6 +4,7 @@ namespace AmravatiSMS\LaravelWhatsApp\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 use AmravatiSMS\LaravelWhatsApp\WhatsAppServiceProvider;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 abstract class TestCase extends Orchestra
 {
@@ -21,5 +22,22 @@ abstract class TestCase extends Orchestra
         $app['config']->set('amravati-whatsapp.base_url', 'https://automate.amravatisms.com');
         $app['config']->set('amravati-whatsapp.logging.enabled', false);
         $app['config']->set('amravati-whatsapp.queue.enabled', false);
+    }
+}
+
+abstract class TestCase extends BaseTestCase
+{
+    use RefreshDatabase;
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            \AmravatiSMS\LaravelWhatsApp\WhatsAppServiceProvider::class,
+        ];
+    }
+
+    protected function defineDatabaseMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }
