@@ -28,20 +28,28 @@ class WhatsAppClient
 
     /**
      * Enable queue mode for subsequent calls.
+     *
+     * Returns a copy so the container-shared instance is left untouched.
      */
     public function queue(): self
     {
-        $this->queued = true;
-        return $this;
+        $clone = clone $this;
+        $clone->queued = true;
+
+        return $clone;
     }
 
     /**
      * Use a different phone number ID for this call.
+     *
+     * Returns a copy so the container-shared instance is left untouched.
      */
     public function withPhoneNumberId(string $phoneNumberId): self
     {
-        $this->phoneNumberId = $phoneNumberId;
-        return $this;
+        $clone = clone $this;
+        $clone->phoneNumberId = $phoneNumberId;
+
+        return $clone;
     }
 
     /**
@@ -176,7 +184,7 @@ class WhatsAppClient
             $params['after'] = $after;
         }
 
-        return $this->request('GET', '/api/v2/whatsapp-business/templates', $params);
+        return $this->request('GET', '/v2/whatsapp-business/templates', $params);
     }
 
     /**
