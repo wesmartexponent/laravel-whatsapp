@@ -41,6 +41,41 @@ class TemplateMessageBuilder
         return $this;
     }
 
+    /**
+     * Append a single body parameter, preserving placeholder order.
+     */
+    public function bodyParam(string|int|float|array $param): self
+    {
+        $this->bodyParams[] = $param;
+        return $this;
+    }
+
+    /**
+     * Append a currency body parameter.
+     *
+     * @param int $amount1000 Amount multiplied by 1000 (99500 renders as 99.50).
+     */
+    public function bodyCurrency(int $amount1000, string $code, string $fallbackValue): self
+    {
+        return $this->bodyParam([
+            'type' => 'currency',
+            'amount_1000' => $amount1000,
+            'code' => $code,
+            'fallback_value' => $fallbackValue,
+        ]);
+    }
+
+    /**
+     * Append a date/time body parameter.
+     */
+    public function bodyDateTime(string $fallbackValue): self
+    {
+        return $this->bodyParam([
+            'type' => 'date_time',
+            'fallback_value' => $fallbackValue,
+        ]);
+    }
+
     public function headerText(string $text): self
     {
         $this->headerParams = [['type' => 'text', 'text' => $text]];
