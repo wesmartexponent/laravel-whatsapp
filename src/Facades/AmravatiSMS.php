@@ -4,6 +4,7 @@ namespace AmravatiSMS\LaravelWhatsApp\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use AmravatiSMS\LaravelWhatsApp\Builders\TemplateMessageBuilder;
+use AmravatiSMS\LaravelWhatsApp\Client\WhatsAppClient;
 use AmravatiSMS\LaravelWhatsApp\Responses\MessageResponse;
 
 /**
